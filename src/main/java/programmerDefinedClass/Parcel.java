@@ -1,3 +1,9 @@
+package programmerDefinedClass;
+
+//import programmerDefinedClass.DeliveryService;
+
+import programmerDefinedClass.DeliveryService;
+
 public class Parcel {
     private Double weight;
     private String contents, shippingMethod;
@@ -10,8 +16,18 @@ public class Parcel {
         this.shippingMethod = shippingMethod;
         this.deliveryService = deliveryService;
     }
-    public void calculateDeliveryCost(){
-        System.out.println("calculateDeliveryCost");
+    public void calculateDeliveryCost() {
+        double baseCost = 40.0;
+        double additionalCostPerKilo = 15.0;
+
+        boolean isPerishable=false;
+
+        if (isPerishable) {
+            additionalCostPerKilo += 10.0;
+        }
+        shippingCost= baseCost + (weight - 1) * additionalCostPerKilo;
+        //String a = String.valueOf(Double.parseDouble(shippingCost));
+        //return shippingCost+"";
     }
 
     public Double getWeight() {

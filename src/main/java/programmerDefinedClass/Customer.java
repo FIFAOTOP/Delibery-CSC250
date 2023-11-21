@@ -1,3 +1,5 @@
+package programmerDefinedClass;
+
 public class Customer {
     private String name,address,phone,type;
 
