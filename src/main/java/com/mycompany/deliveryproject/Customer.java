@@ -1,9 +1,9 @@
-package programmerDefinedClass;
+package com.mycompany.deliveryproject;
 
 public class Customer {
     private String name,address,phone,type;
 
-    public Customer(String name, String address, String phone, String type) {
+    public Customer(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;

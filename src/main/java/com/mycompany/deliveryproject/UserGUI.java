@@ -4,12 +4,23 @@
  */
 package com.mycompany.deliveryproject;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Random;
+import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author User
  */
 public class UserGUI extends javax.swing.JFrame {
-
+private Date timeStamp;
     /**
      * Creates new form MainGUI
      */
@@ -26,8 +37,9 @@ public class UserGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,10 +50,10 @@ public class UserGUI extends javax.swing.JFrame {
         jLabel1.setText("Delivery Program");
         jLabel1.setToolTipText("");
 
-        jButton1.setText("New transaction");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setText("Add Parcel");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
 
@@ -59,7 +71,7 @@ public class UserGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(185, 185, 185)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -72,7 +84,7 @@ public class UserGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(76, Short.MAX_VALUE))
@@ -81,12 +93,93 @@ public class UserGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+         // Create a Random object
+        Random random = new Random();
+
+        // Generate a random integer between 1 and 100 (inclusive)
+        int min = 1;
+        int max = 1000000;
+        int randomInRange = random.nextInt(max - min + 1) + min;
+                
+                //JTextField trackingIDField = new JTextField();
+                JTextField senderNameField = new JTextField();
+                JTextField senderAddressField = new JTextField();
+                JTextField senderPhoneNumberField = new JTextField();
+                JTextField receiverNameField = new JTextField();
+                JTextField receiverAddressField = new JTextField();
+                JTextField receiverPhoneNumberField = new JTextField();
+                JTextField contentField = new JTextField();
+                JTextField weightField = new JTextField();
+                JCheckBox perishableCheckbox = new JCheckBox("is Fresh");
+
+                JPanel panel = new JPanel();
+                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                //panel.add(new JLabel("Tracking ID:"));
+               // panel.add(trackingIDField);
+                panel.add(new JLabel("Sender Name:"));
+                panel.add(senderNameField);
+                panel.add(new JLabel("Sender Address:"));
+                panel.add(senderAddressField);
+                panel.add(new JLabel("Sender Phone Number:"));
+                panel.add(senderPhoneNumberField);
+                panel.add(new JLabel("Receiver Name:"));
+                panel.add(receiverNameField);
+                panel.add(new JLabel("Receiver Address:"));
+                panel.add(receiverAddressField);
+                panel.add(new JLabel("Receiver Phone Number:"));
+                panel.add(receiverPhoneNumberField);
+                panel.add(new JLabel("Parcel Content:"));
+                panel.add(contentField);
+                panel.add(new JLabel("Weight (kg):"));
+                panel.add(weightField);
+                panel.add(perishableCheckbox);
+
+                int result = JOptionPane.showConfirmDialog(null, panel,
+                        "Enter Parcel Information", JOptionPane.OK_CANCEL_OPTION);
+                     
+                if (result == JOptionPane.OK_OPTION) {
+                    // Extract input values and create a new Parcel object
+                    String trackingID = randomInRange+"";
+                   
+                    String senderName = senderNameField.getText();
+                    String senderAddress = senderAddressField.getText();
+                    String senderPhoneNumber = senderPhoneNumberField.getText();
+                    String receiverName = receiverNameField.getText();
+                    String receiverAddress = receiverAddressField.getText();
+                    String receiverPhoneNumber = receiverPhoneNumberField.getText();
+                    String content = contentField.getText();
+                    double weight = Double.parseDouble(weightField.getText());
+                    //boolean isFresh = false;
+                    LocalDate currentDate = LocalDate.now();
+                    Sender newSender = new Sender(senderName, senderAddress, senderPhoneNumber);
+                    Recipient newRecipient = new Recipient(receiverName, receiverAddress, receiverPhoneNumber);
+                     // Get the current date and time using LocalDateTime
+                        LocalDate currentDateTime = LocalDate.now();
+
+                        // Convert LocalDateTime to Date
+                        timeStamp = java.sql.Date.valueOf(currentDateTime);
+                    if(perishableCheckbox.isSelected()){
+                        Fresh newFresh = new Fresh(weight, content);
+                        DeliveryService newDeliveryService = new DeliveryService(trackingID,newSender, newRecipient, newFresh, timeStamp);
+                    }else{
+                        Dry newDry = new Dry(weight, content);
+                        DeliveryService newDeliveryService = new DeliveryService(trackingID,newSender, newRecipient, newDry,timeStamp);
+                    }
+                 JOptionPane.showMessageDialog(this, "Your Parcel tracking ID:"+trackingID+"\nTime:"+timeStamp);
+                 
+                 //add id checking
+            }
+                //JOptionPane.showMessageDialog(this, "Your Parcel tracking ID:"+trackingID);
+    }//GEN-LAST:event_addButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        //open input tracking
+        setVisible(false);
+        InputTrackingGUI ob = new InputTrackingGUI();
+        ob.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -126,8 +219,9 @@ public class UserGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton addButton;
     private javax.swing.JButton jButton3;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

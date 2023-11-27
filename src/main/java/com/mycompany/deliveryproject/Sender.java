@@ -1,11 +1,9 @@
-package programmerDefinedClass;
+package com.mycompany.deliveryproject;
 
 //import programmerDefinedClass.Customer;
 
-import programmerDefinedClass.Customer;
-
 public class Sender extends Customer {
-    public Sender(String name, String address, String phone, String type) {
-        super(name, address, phone, type);
+    public Sender(String name, String address, String phone) {
+        super(name, address, phone);
     }
 }

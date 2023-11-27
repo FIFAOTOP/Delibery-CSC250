@@ -1,4 +1,4 @@
-package programmerDefinedClass;
+package com.mycompany.deliveryproject;
 import java.util.Date;
 
 public class DeliveryService {
@@ -11,11 +11,14 @@ public class DeliveryService {
     private Parcel parcel;
     private String trackingStatus;
 
-    public DeliveryService(Sender sender, Recipient recipient, Parcel parcel) {
+    public DeliveryService(String trackID,Sender sender, Recipient recipient, Parcel parcel, Date timeStamp) {
         this.sender = sender;
         this.recipient = recipient;
         this.parcel = parcel;
+        this.timeStamp = timeStamp;
     }
+    
+   
 
     public String getTrackId() {
         return trackId;

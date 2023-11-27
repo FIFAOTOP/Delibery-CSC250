@@ -8,6 +8,16 @@ package com.mycompany.deliveryproject;
  *
  * @author User
  */
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import javax.swing.table.DefaultTableModel;
+import java.util.*;
+
 public class HistoryGUI extends javax.swing.JFrame {
 
     /**
@@ -28,19 +38,18 @@ public class HistoryGUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jHistoryTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(701, 516));
-        setSize(new java.awt.Dimension(701, 516));
+        setSize(new java.awt.Dimension(701, 550));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("History");
         jLabel1.setToolTipText("");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -59,8 +68,8 @@ public class HistoryGUI extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(jTable1);
+        jHistoryTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(jHistoryTable);
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +101,7 @@ public class HistoryGUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,6 +111,37 @@ public class HistoryGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+// ... (รหัสอื่น ๆ)
+
+    private void readTextFile() {
+        try {
+            Path file = Paths.get("D:\\CSC250\\Delivery project\\src\\main\\java\\db\\record.txt");
+            BufferedReader reader = Files.newBufferedReader(file, StandardCharsets.UTF_8);
+            String line;
+
+            // Skip the header line
+            reader.readLine();
+
+            // Create a new DefaultTableModel
+            DefaultTableModel tableModel = new DefaultTableModel(
+                    new String[]{"Track ID", "Sender name", "Receiver name", "Parcel", "Cost", "Status", "Timestamp"}, 0);
+
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                // Add the data to the table model
+                tableModel.addRow(fields);
+            }
+
+            // Set the new table model to the JTable
+            jHistoryTable.setModel(tableModel);
+
+            reader.close();
+        } catch (IOException e) {
+            System.err.println("IOException: " + e.getMessage());
+        }
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -118,29 +158,27 @@ public class HistoryGUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HistoryGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HistoryGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HistoryGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(HistoryGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HistoryGUI().setVisible(true);
+            HistoryGUI historyGUI = new HistoryGUI();
+            historyGUI.readTextFile(); // เรียกอ่านไฟล์หลังจาก GUI ถูกสร้าง
+            historyGUI.setVisible(true);
             }
         });
     }
 
+    private javax.swing.table.DefaultTableModel tableModel;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JTable jHistoryTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

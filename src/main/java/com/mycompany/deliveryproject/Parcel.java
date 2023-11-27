@@ -1,8 +1,6 @@
-package programmerDefinedClass;
+package com.mycompany.deliveryproject;
 
 //import programmerDefinedClass.DeliveryService;
-
-import programmerDefinedClass.DeliveryService;
 
 public class Parcel {
     private Double weight;
@@ -10,7 +8,7 @@ public class Parcel {
     private Double shippingCost;
     private DeliveryService deliveryService;
 
-    public Parcel(Double weight, String contents, String shippingMethod, DeliveryService deliveryService) {
+    public Parcel(Double weight, String contents) {
         this.weight = weight;
         this.contents = contents;
         this.shippingMethod = shippingMethod;
@@ -29,7 +27,9 @@ public class Parcel {
         //String a = String.valueOf(Double.parseDouble(shippingCost));
         //return shippingCost+"";
     }
-
+    public void shippingMethod(){
+        
+    }
     public Double getWeight() {
         return weight;
     }

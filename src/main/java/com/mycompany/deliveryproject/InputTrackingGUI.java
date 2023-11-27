@@ -4,6 +4,11 @@
  */
 package com.mycompany.deliveryproject;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author User
@@ -26,38 +31,22 @@ public class InputTrackingGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jNameTextField7 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jNameTextField8 = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        dateField = new com.toedter.calendar.JDateChooser();
+        trackingIDField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jNameTextField7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jNameTextField7.setEnabled(false);
-        jNameTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNameTextField7ActionPerformed(evt);
-            }
-        });
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setText("Tracking ID :");
 
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jNameTextField8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jNameTextField8.setEnabled(false);
-        jNameTextField8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNameTextField8ActionPerformed(evt);
+                searchButtonActionPerformed(evt);
             }
         });
 
@@ -67,62 +56,112 @@ public class InputTrackingGUI extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel18.setText("Or");
 
+        trackingIDField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        trackingIDField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trackingIDFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel16)
+                .addContainerGap(98, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(searchButton)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel18))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jNameTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jNameTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addGap(95, 95, 95)))
-                .addContainerGap(128, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dateField, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(trackingIDField))
+                        .addGap(200, 200, 200))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
-                    .addComponent(jNameTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(trackingIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
-                    .addComponent(jNameTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jNameTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNameTextField7ActionPerformed
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jNameTextField7ActionPerformed
+         List<DeliveryService> deliveryServices = new ArrayList<>();
+        String searchTrackingID = trackingIDField.getText();
+       // DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+        Date searchDate=dateField.getDate();
+        
+        if(trackingIDField != null){
+        DeliveryService foundDeliveryService = searchByTrackingID(deliveryServices, searchTrackingID);
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (foundDeliveryService != null) {
+            JOptionPane.showMessageDialog(this, "Delivery Service Found: " + foundDeliveryService, "Found", JOptionPane.INFORMATION_MESSAGE);
 
-    private void jNameTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNameTextField8ActionPerformed
+            //System.out.println("Delivery Service Found: " + foundDeliveryService);
+        } else {
+            JOptionPane.showMessageDialog(this, "Delivery Service not found for tracking ID: " + searchTrackingID, "Found", JOptionPane.INFORMATION_MESSAGE);
+
+            System.out.println("Delivery Service not found for tracking ID: " + searchTrackingID);
+        }
+        }else{
+            List<DeliveryService> foundDeliveryServices = searchByDate(deliveryServices, searchDate);
+
+        if (!foundDeliveryServices.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Delivery Services Found for Date " + searchDate + ":", "Found", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("Delivery Services Found for Date " + searchDate + ":");
+            for (DeliveryService deliveryService : foundDeliveryServices) {
+             
+                System.out.println(deliveryService);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No Delivery Services found for Date: " + searchDate, "Found", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("No Delivery Services found for Date: " + searchDate);
+        }
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
+    public static DeliveryService searchByTrackingID(List<DeliveryService> deliveryServices, String trackingID) {
+        for (DeliveryService deliveryService : deliveryServices) {
+            if (deliveryService.getTrackId().equals(trackingID)) {
+                return deliveryService;
+            }
+        }
+        return null; // If not found
+    }
+    public static List<DeliveryService> searchByDate(List<DeliveryService> deliveryServices, Date searchDate) {
+        List<DeliveryService> result = new ArrayList<>();
+
+        for (DeliveryService deliveryService : deliveryServices) {
+            if (deliveryService.getTimeStamp().equals(searchDate)) {
+                result.add(deliveryService);
+            }
+        }
+
+        return result;
+    }
+    private void trackingIDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackingIDFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jNameTextField8ActionPerformed
+    }//GEN-LAST:event_trackingIDFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,11 +199,11 @@ public class InputTrackingGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser dateField;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JTextField jNameTextField7;
-    private javax.swing.JTextField jNameTextField8;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField trackingIDField;
     // End of variables declaration//GEN-END:variables
 }

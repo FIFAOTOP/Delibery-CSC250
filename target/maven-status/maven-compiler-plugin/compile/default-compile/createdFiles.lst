@@ -5,10 +5,15 @@ example\DeliverySystem.class
 com\mycompany\deliveryproject\ReportGUI$7.class
 com\mycompany\deliveryproject\ParcelDetailGUI.class
 com\mycompany\deliveryproject\ReportGUI$10.class
+<<<<<<< HEAD
 com\mycompany\deliveryproject\Sender.class
 com\mycompany\deliveryproject\CustomerDetailGUI$4.class
 example\Parcel.class
 com\mycompany\deliveryproject\CustomerDetailGUI$1.class
+=======
+programmerDefinedClass\DeliveryService.class
+example\Parcel.class
+>>>>>>> b8c2eea4260dd65a226b2b28bd1fd54a02a75fdf
 com\mycompany\deliveryproject\ParcelDetailGUI$4.class
 example\AdminGUI$2.class
 com\mycompany\deliveryproject\InputTrackingGUI$2.class
@@ -21,12 +26,12 @@ com\mycompany\deliveryproject\InputTrackingGUI$3.class
 com\mycompany\deliveryproject\UserGUI$3.class
 com\mycompany\deliveryproject\RoleGUI$3.class
 com\mycompany\deliveryproject\Parcel.class
-com\mycompany\deliveryproject\CustomerDetailGUI$5.class
 com\mycompany\deliveryproject\HistoryGUI$3.class
 com\mycompany\deliveryproject\Recipient.class
 com\mycompany\deliveryproject\AdminGUI.class
 com\mycompany\deliveryproject\AdminGUI$3.class
 com\mycompany\deliveryproject\ReportGUI$8.class
+<<<<<<< HEAD
 com\mycompany\deliveryproject\Fresh.class
 example\AdminGUI$4.class
 com\mycompany\deliveryproject\CustomerDetailGUI$2.class
@@ -35,6 +40,13 @@ classesExample\DeliveryService.class
 com\mycompany\deliveryproject\ReportGUI$5.class
 com\mycompany\deliveryproject\CustomerDetailGUI.class
 com\mycompany\deliveryproject\AdminGUI$5.class
+=======
+example\AdminGUI$4.class
+com\mycompany\deliveryproject\ParcelDetailGUI$3.class
+classesExample\DeliveryService.class
+com\mycompany\deliveryproject\ReportGUI$5.class
+programmerDefinedClass\Sender.class
+>>>>>>> b8c2eea4260dd65a226b2b28bd1fd54a02a75fdf
 com\mycompany\deliveryproject\UserGUI.class
 com\mycompany\deliveryproject\ReportGUI$2.class
 com\mycompany\deliveryproject\ReportGUI$9.class
@@ -48,12 +60,17 @@ com\mycompany\deliveryproject\ReportGUI$12.class
 com\mycompany\deliveryproject\ReportGUI$6.class
 classesExample\Main.class
 com\mycompany\deliveryproject\AdminGUI$4.class
-com\mycompany\deliveryproject\CustomerDetailGUI$3.class
 com\mycompany\deliveryproject\InputTrackingGUI$1.class
 com\mycompany\deliveryproject\ParcelDetailGUI$2.class
 example\AdminGUI$5.class
+<<<<<<< HEAD
 com\mycompany\deliveryproject\AdminGUI$1.class
 com\mycompany\deliveryproject\Customer.class
+=======
+com\mycompany\deliveryproject\DeliverySystem.class
+com\mycompany\deliveryproject\AdminGUI$1.class
+com\mycompany\deliveryproject\InputTrackingGUI$4.class
+>>>>>>> b8c2eea4260dd65a226b2b28bd1fd54a02a75fdf
 example\AdminGUI$1.class
 com\mycompany\deliveryproject\UserGUI$2.class
 com\mycompany\deliveryproject\DeliveryService.class
