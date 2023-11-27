@@ -40,11 +40,10 @@ public class AdminGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        addButton = new javax.swing.JButton();
         historyButton = new javax.swing.JButton();
         trackingButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        updateButton = new javax.swing.JButton();
+        historyButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,21 +52,14 @@ public class AdminGUI extends javax.swing.JFrame {
         jLabel1.setText("Delivery Program");
         jLabel1.setToolTipText("");
 
-        addButton.setText("Add");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
-            }
-        });
-
-        historyButton.setText("History");
+        historyButton.setText("Report");
         historyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 historyButtonActionPerformed(evt);
             }
         });
 
-        trackingButton.setText("Tracking");
+        trackingButton.setText("Update");
         trackingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackingButtonActionPerformed(evt);
@@ -77,10 +69,10 @@ public class AdminGUI extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Admin");
 
-        updateButton.setText("Update");
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
+        historyButton1.setText("History");
+        historyButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
+                historyButton1ActionPerformed(evt);
             }
         });
 
@@ -89,95 +81,37 @@ public class AdminGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(114, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(trackingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(174, 174, 174))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97))))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(historyButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(185, 185, 185))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(trackingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(historyButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
-        JTextField trackingIDField = new JTextField();
-                JTextField senderNameField = new JTextField();
-                JTextField senderAddressField = new JTextField();
-                JTextField senderPhoneNumberField = new JTextField();
-                JTextField receiverNameField = new JTextField();
-                JTextField receiverAddressField = new JTextField();
-                JTextField receiverPhoneNumberField = new JTextField();
-                JTextField weightField = new JTextField();
-                JCheckBox perishableCheckbox = new JCheckBox("Perishable");
-
-                JPanel panel = new JPanel();
-                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-                panel.add(new JLabel("Tracking ID:"));
-                panel.add(trackingIDField);
-                panel.add(new JLabel("Sender Name:"));
-                panel.add(senderNameField);
-                panel.add(new JLabel("Sender Address:"));
-                panel.add(senderAddressField);
-                panel.add(new JLabel("Sender Phone Number:"));
-                panel.add(senderPhoneNumberField);
-                panel.add(new JLabel("Receiver Name:"));
-                panel.add(receiverNameField);
-                panel.add(new JLabel("Receiver Address:"));
-                panel.add(receiverAddressField);
-                panel.add(new JLabel("Receiver Phone Number:"));
-                panel.add(receiverPhoneNumberField);
-                panel.add(new JLabel("Weight (kg):"));
-                panel.add(weightField);
-                panel.add(perishableCheckbox);
-
-                int result = JOptionPane.showConfirmDialog(null, panel,
-                        "Enter Parcel Information", JOptionPane.OK_CANCEL_OPTION);
-
-                if (result == JOptionPane.OK_OPTION) {
-                    // Extract input values and create a new Parcel object
-                    String trackingID = trackingIDField.getText();
-                    String senderName = senderNameField.getText();
-                    String senderAddress = senderAddressField.getText();
-                    String senderPhoneNumber = senderPhoneNumberField.getText();
-                    String receiverName = receiverNameField.getText();
-                    String receiverAddress = receiverAddressField.getText();
-                    String receiverPhoneNumber = receiverPhoneNumberField.getText();
-                    double weight = Double.parseDouble(weightField.getText());
-                    boolean isPerishable = perishableCheckbox.isSelected();
-
-                    Parcel newParcel = new Parcel(trackingID,senderName, senderAddress, senderPhoneNumber,
-                            receiverName, receiverAddress, receiverPhoneNumber, weight, isPerishable);
-
-                    // Add the new parcel to the delivery system
-                    deliverySystem.addParcel(newParcel);
-                }
-    }//GEN-LAST:event_addButtonActionPerformed
 
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
         // TODO add your handling code here:
@@ -259,9 +193,9 @@ private Parcel findParcelByTrackingID(String trackingID) {
         }
         return null;
     }
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+    private void historyButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_updateButtonActionPerformed
+    }//GEN-LAST:event_historyButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,11 +233,10 @@ private Parcel findParcelByTrackingID(String trackingID) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addButton;
     private javax.swing.JButton historyButton;
+    private javax.swing.JButton historyButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton trackingButton;
-    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
