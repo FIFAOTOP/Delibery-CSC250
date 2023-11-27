@@ -1,81 +1,72 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.mycompany.deliveryproject;
+package programmerDefinedClass;
 
-import java.util.Date;
+//import programmerDefinedClass.DeliveryService;
 
-/**
- *
- * @author Light
- */
-class Parcel {
-    private String trackingID;
-    private String senderName;//customer class
-    private String senderAddress;//customer class
-    private String senderPhoneNumber;//customer class
-    private String receiverName;//customer class
-    private String receiverAddress;//customer class
-    private String receiverPhoneNumber;//customer class
-    private double weight;
-    private boolean isPerishable;// true for fresh items, false for dry items
-    private Date deliveryDate;
-    private boolean isDelivered;
+import programmerDefinedClass.DeliveryService;
 
-    public Parcel(String trackingID,String senderName, String senderAddress, String senderPhoneNumber,
-                  String receiverName, String receiverAddress, String receiverPhoneNumber,
-                  double weight, boolean isPerishable) {
-        this.senderName = senderName;
-        this.senderAddress = senderAddress;
-        this.senderPhoneNumber = senderPhoneNumber;
-        this.receiverName = receiverName;
-        this.receiverAddress = receiverAddress;
-        this.receiverPhoneNumber = receiverPhoneNumber;
+public class Parcel {
+    private Double weight;
+    private String contents, shippingMethod;
+    private Double shippingCost;
+    private DeliveryService deliveryService;
+
+    public Parcel(Double weight, String contents, String shippingMethod, DeliveryService deliveryService) {
         this.weight = weight;
-        this.isPerishable = isPerishable;
-        this.deliveryDate = null;
-        this.isDelivered = false;
+        this.contents = contents;
+        this.shippingMethod = shippingMethod;
+        this.deliveryService = deliveryService;
     }
-    public String getTrackingID(){
-        return trackingID;
-    }
-    public String getSenderName() {
-        return senderName;
-    }
-
-    public String getReceiverName() {
-        return receiverName;
-    }
-
-    public double calculateShippingCost() {
+    public void calculateDeliveryCost() {
         double baseCost = 40.0;
-        double additionalCost = (weight - 1) * 15.0;
+        double additionalCostPerKilo = 15.0;
+
+        boolean isPerishable=false;
+
         if (isPerishable) {
-            additionalCost += 10.0;
+            additionalCostPerKilo += 10.0;
         }
-        return baseCost + additionalCost;
+        shippingCost= baseCost + (weight - 1) * additionalCostPerKilo;
+        //String a = String.valueOf(Double.parseDouble(shippingCost));
+        //return shippingCost+"";
     }
 
-    public void markAsDelivered() {
-        isDelivered = true;
-        deliveryDate = new Date();
-    }
-
-    public boolean isDelivered() {
-        return isDelivered;
-    }
-
-    public Date getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public Object isPerishable() {
-        return false;
-    }
-
-    public Object getWeight() {
+    public Double getWeight() {
         return weight;
     }
-}
 
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public String getContents() {
+        return contents;
+    }
+
+    public void setContents(String contents) {
+        this.contents = contents;
+    }
+
+    public String getShippingMethod() {
+        return shippingMethod;
+    }
+
+    public void setShippingMethod(String shippingMethod) {
+        this.shippingMethod = shippingMethod;
+    }
+
+    public Double getShippingCost() {
+        return shippingCost;
+    }
+
+    public void setShippingCost(Double shippingCost) {
+        this.shippingCost = shippingCost;
+    }
+
+    public DeliveryService getDeliveryService() {
+        return deliveryService;
+    }
+
+    public void setDeliveryService(DeliveryService deliveryService) {
+        this.deliveryService = deliveryService;
+    }
+}
