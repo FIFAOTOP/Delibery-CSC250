@@ -4,12 +4,25 @@
  */
 package com.mycompany.deliveryproject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class AdminGUI extends javax.swing.JFrame {
-
+ DeliverySystem deliverySystem = new DeliverySystem();
     /**
      * Creates new form AdminGUI
      */
@@ -27,10 +40,11 @@ public class AdminGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        historyButton = new javax.swing.JButton();
+        trackingButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        updateButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,29 +53,36 @@ public class AdminGUI extends javax.swing.JFrame {
         jLabel1.setText("Delivery Program");
         jLabel1.setToolTipText("");
 
-        jButton2.setText("Report");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setText("History");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        historyButton.setText("History");
+        historyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                historyButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Tracking");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        trackingButton.setText("Tracking");
+        trackingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                trackingButtonActionPerformed(evt);
             }
         });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Admin");
+
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,9 +93,10 @@ public class AdminGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(trackingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(174, 174, 174))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,29 +110,158 @@ public class AdminGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(trackingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        JTextField trackingIDField = new JTextField();
+                JTextField senderNameField = new JTextField();
+                JTextField senderAddressField = new JTextField();
+                JTextField senderPhoneNumberField = new JTextField();
+                JTextField receiverNameField = new JTextField();
+                JTextField receiverAddressField = new JTextField();
+                JTextField receiverPhoneNumberField = new JTextField();
+                JTextField weightField = new JTextField();
+                JCheckBox perishableCheckbox = new JCheckBox("Perishable");
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+                JPanel panel = new JPanel();
+                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                panel.add(new JLabel("Tracking ID:"));
+                panel.add(trackingIDField);
+                panel.add(new JLabel("Sender Name:"));
+                panel.add(senderNameField);
+                panel.add(new JLabel("Sender Address:"));
+                panel.add(senderAddressField);
+                panel.add(new JLabel("Sender Phone Number:"));
+                panel.add(senderPhoneNumberField);
+                panel.add(new JLabel("Receiver Name:"));
+                panel.add(receiverNameField);
+                panel.add(new JLabel("Receiver Address:"));
+                panel.add(receiverAddressField);
+                panel.add(new JLabel("Receiver Phone Number:"));
+                panel.add(receiverPhoneNumberField);
+                panel.add(new JLabel("Weight (kg):"));
+                panel.add(weightField);
+                panel.add(perishableCheckbox);
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+                int result = JOptionPane.showConfirmDialog(null, panel,
+                        "Enter Parcel Information", JOptionPane.OK_CANCEL_OPTION);
+
+                if (result == JOptionPane.OK_OPTION) {
+                    // Extract input values and create a new Parcel object
+                    String trackingID = trackingIDField.getText();
+                    String senderName = senderNameField.getText();
+                    String senderAddress = senderAddressField.getText();
+                    String senderPhoneNumber = senderPhoneNumberField.getText();
+                    String receiverName = receiverNameField.getText();
+                    String receiverAddress = receiverAddressField.getText();
+                    String receiverPhoneNumber = receiverPhoneNumberField.getText();
+                    double weight = Double.parseDouble(weightField.getText());
+                    boolean isPerishable = perishableCheckbox.isSelected();
+
+                    Parcel newParcel = new Parcel(trackingID,senderName, senderAddress, senderPhoneNumber,
+                            receiverName, receiverAddress, receiverPhoneNumber, weight, isPerishable);
+
+                    // Add the new parcel to the delivery system
+                    deliverySystem.addParcel(newParcel);
+                }
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        Date currentDate = new Date();
+
+                // Create a table model with headers
+                String[] columnNames = {"ID","Sender", "Receiver", "Weight", "Perishable", "Delivered", "Delivery Date"};
+                        
+                DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+
+                // Iterate through the parcels and add relevant data to the table model
+                for (Parcel parcel : deliverySystem.getParcels()) {
+                    // Check if the parcel is delivered within the last 90 days
+                    if (parcel.isDelivered() && withinLast90Days(parcel.getDeliveryDate(), currentDate)) {
+                        // Format the delivery date
+                        String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(parcel.getDeliveryDate());
+
+                        // Add data to the table model
+                        Object[] rowData = {
+                                parcel.getTrackingID(),
+                                parcel.getSenderName(),
+                                parcel.getReceiverName(),
+                                parcel.getWeight(),
+                                parcel.isPerishable(),
+                                parcel.isDelivered(),
+                                formattedDate
+                        };
+                        tableModel.addRow(rowData);
+                    }
+                }
+
+                // Create a JTable with the populated table model
+                JTable historyTable = new JTable(tableModel);
+
+                // Display the JTable in a JScrollPane to handle scrolling
+                JScrollPane scrollPane = new JScrollPane(historyTable);
+                JOptionPane.showMessageDialog(null, scrollPane, "Delivery History", JOptionPane.INFORMATION_MESSAGE);
+                
+    }//GEN-LAST:event_historyButtonActionPerformed
+ private boolean withinLast90Days(Date deliveryDate, Date currentDate) {
+                // Calculate the difference in milliseconds
+                long differenceInMilliseconds = currentDate.getTime() - deliveryDate.getTime();
+                // Convert milliseconds to days
+                long differenceInDays = differenceInMilliseconds / (24 * 60 * 60 * 1000);
+
+                // Check if the delivery date is within the last 90 days
+                return differenceInDays <= 90;
+            }
+    private void trackingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackingButtonActionPerformed
+        // TODO add your handling code here:
+         // Prompt the user to enter the tracking ID
+        String trackingID = JOptionPane.showInputDialog("Enter Tracking ID:");
+
+        // Search for the parcel with the given tracking ID
+        Parcel trackedParcel = findParcelByTrackingID(trackingID);
+
+        // Display tracking information
+        if (trackedParcel != null) {
+            String status = trackedParcel.isDelivered() ? "Delivered" : "In Transit";
+            String deliveryDate = trackedParcel.isDelivered()
+                    ? "Delivered on " + trackedParcel.getDeliveryDate()
+                    : "Not yet delivered";
+
+            String trackingInfo = String.format("Status: %s\n%s", status, deliveryDate);
+            JOptionPane.showMessageDialog(null, trackingInfo, "Parcel Tracking",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Parcel not found", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_trackingButtonActionPerformed
+private Parcel findParcelByTrackingID(String trackingID) {
+        List<Parcel> parcels = deliverySystem.getParcels();
+        for (Parcel parcel : parcels) {
+            // Assuming Parcel class has a getTrackingID() method
+            if (parcel.getTrackingID().equals(trackingID)) {
+                return parcel;
+            }
+        }
+        return null;
+    }
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,10 +299,11 @@ public class AdminGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton historyButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton trackingButton;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
