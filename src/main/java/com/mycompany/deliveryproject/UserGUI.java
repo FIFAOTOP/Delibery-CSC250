@@ -14,6 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.File;
+
 
 /**
  *
@@ -37,7 +42,6 @@ private Date timeStamp;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         addButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -162,10 +166,10 @@ private Date timeStamp;
                         timeStamp = java.sql.Date.valueOf(currentDateTime);
                     if(perishableCheckbox.isSelected()){
                         Fresh newFresh = new Fresh(weight, content);
-                        DeliveryService newDeliveryService = new DeliveryService(trackingID,newSender, newRecipient, newFresh, timeStamp);
+                        DeliveryService newDeliveryService = new DeliveryService(trackingID,newSender, newRecipient, newFresh, timeStamp,"In Transit");
                     }else{
                         Dry newDry = new Dry(weight, content);
-                        DeliveryService newDeliveryService = new DeliveryService(trackingID,newSender, newRecipient, newDry,timeStamp);
+                        DeliveryService newDeliveryService = new DeliveryService(trackingID,newSender, newRecipient, newDry,timeStamp,"In Transit");
                     }
                  JOptionPane.showMessageDialog(this, "Your Parcel tracking ID:"+trackingID+"\nTime:"+timeStamp);
                  
@@ -221,7 +225,6 @@ private Date timeStamp;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JButton jButton3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

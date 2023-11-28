@@ -17,6 +17,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
+// ... (รหัสอื่น ๆ)
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class HistoryGUI extends javax.swing.JFrame {
 
@@ -40,6 +43,7 @@ public class HistoryGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jHistoryTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(701, 550));
@@ -78,6 +82,13 @@ public class HistoryGUI extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Show");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,10 +98,15 @@ public class HistoryGUI extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(185, 185, 185))
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,47 +115,82 @@ public class HistoryGUI extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        //open input tracking
+        setVisible(false);
+        AdminGUI ob = new AdminGUI();
+        ob.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-// ... (รหัสอื่น ๆ)
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+           readTextFile();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void readTextFile() {
-        try {
-            Path file = Paths.get("D:\\CSC250\\Delivery project\\src\\main\\java\\db\\record.txt");
-            BufferedReader reader = Files.newBufferedReader(file, StandardCharsets.UTF_8);
-            String line;
+// ... (โค้ดอื่น ๆ)
 
-            // Skip the header line
-            reader.readLine();
+private void readTextFile() {
+    try {
+        Path file = Paths.get("D:\\CSC250\\Delivery project\\src\\main\\java\\db\\record.txt");
+        BufferedReader reader = Files.newBufferedReader(file, StandardCharsets.UTF_8);
+        String header = reader.readLine(); // อ่านหัวตาราง
+        String[] columnNames = header.split(",");
 
-            // Create a new DefaultTableModel
-            DefaultTableModel tableModel = new DefaultTableModel(
-                    new String[]{"Track ID", "Sender name", "Receiver name", "Parcel", "Cost", "Status", "Timestamp"}, 0);
+        // สร้าง DefaultTableModel โดยไม่ระบุ ColumnIdentifiers ไว้ก่อน
+        DefaultTableModel tableModel = new DefaultTableModel();
 
-            while ((line = reader.readLine()) != null) {
-                String[] fields = line.split(",");
-                // Add the data to the table model
-                tableModel.addRow(fields);
+        // สร้าง ArrayList เพื่อเก็บตำแหน่งของคอลัมน์ที่ต้องการแสดง
+        List<Integer> displayColumnIndices = new ArrayList<>();
+        for (int i = 0; i < columnNames.length; i++) {
+            if (!("Receiver Address".equals(columnNames[i]) || "Weight".equals(columnNames[i]) || "Parcel Type".equals(columnNames[i]) || "Sender Address".equals(columnNames[i]))) {
+                displayColumnIndices.add(i);
             }
-
-            // Set the new table model to the JTable
-            jHistoryTable.setModel(tableModel);
-
-            reader.close();
-        } catch (IOException e) {
-            System.err.println("IOException: " + e.getMessage());
         }
+
+        // Add column names to the table model (โดยไม่รวม "Receiver Address", "Weight", "Parcel Type", "Sender Address")
+        for (int index : displayColumnIndices) {
+            tableModel.addColumn(columnNames[index]);
+        }
+
+        String line;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate today = LocalDate.now();
+
+        while ((line = reader.readLine()) != null) {
+            String[] fields = line.split(",");
+
+            // ตรวจสอบว่า Timestamp ไม่เกิน 90 วัน
+            LocalDate timestamp = LocalDate.parse(fields[Arrays.asList(columnNames).indexOf("Timestamp")], formatter);
+            if (today.minusDays(90).isBefore(timestamp) || today.minusDays(90).isEqual(timestamp)) {
+                // เพิ่มเฉพาะคอลัมน์ที่ต้องการแสดง
+                Object[] displayFields = displayColumnIndices.stream()
+                        .map(index -> fields[index])
+                        .toArray();
+
+                // Add the data to the table model
+                tableModel.addRow(displayFields);
+            }
+        }
+
+        // Set the new table model to the JTable
+        jHistoryTable.setModel(tableModel);
+
+        reader.close();
+    } catch (IOException e) {
+        System.err.println("IOException: " + e.getMessage());
     }
+}
+
+
 
     
     /**
@@ -167,7 +218,6 @@ public class HistoryGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
             HistoryGUI historyGUI = new HistoryGUI();
-            historyGUI.readTextFile(); // เรียกอ่านไฟล์หลังจาก GUI ถูกสร้าง
             historyGUI.setVisible(true);
             }
         });
@@ -177,6 +227,7 @@ public class HistoryGUI extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JTable jHistoryTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

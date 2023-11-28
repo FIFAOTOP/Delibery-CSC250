@@ -83,11 +83,17 @@ public class RoleGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+         //open input tracking
+        setVisible(false);
+        AdminGUI ob = new AdminGUI();
+        ob.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+         //open input tracking
+        setVisible(false);
+        UserGUI ob = new UserGUI();
+        ob.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

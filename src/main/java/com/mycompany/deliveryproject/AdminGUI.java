@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author User
  */
 public class AdminGUI extends javax.swing.JFrame {
- DeliverySystem deliverySystem = new DeliverySystem();
+
     /**
      * Creates new form AdminGUI
      */
@@ -40,10 +40,10 @@ public class AdminGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        historyButton = new javax.swing.JButton();
-        trackingButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        historyButton1 = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
+        trackingButton = new javax.swing.JButton();
+        historyButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,27 +52,27 @@ public class AdminGUI extends javax.swing.JFrame {
         jLabel1.setText("Delivery Program");
         jLabel1.setToolTipText("");
 
-        historyButton.setText("Report");
-        historyButton.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Admin");
+
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                historyButtonActionPerformed(evt);
+                updateButtonActionPerformed(evt);
             }
         });
 
-        trackingButton.setText("Update");
+        trackingButton.setText("Tracking");
         trackingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackingButtonActionPerformed(evt);
             }
         });
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Admin");
-
-        historyButton1.setText("History");
-        historyButton1.addActionListener(new java.awt.event.ActionListener() {
+        historyButton.setText("History");
+        historyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                historyButton1ActionPerformed(evt);
+                historyButtonActionPerformed(evt);
             }
         });
 
@@ -93,19 +93,19 @@ public class AdminGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(trackingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(historyButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(185, 185, 185))))
+                            .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(182, 182, 182))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(trackingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(historyButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -113,89 +113,23 @@ public class AdminGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
-        Date currentDate = new Date();
+    }//GEN-LAST:event_updateButtonActionPerformed
 
-                // Create a table model with headers
-                String[] columnNames = {"ID","Sender", "Receiver", "Weight", "Perishable", "Delivered", "Delivery Date"};
-                        
-                DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-
-                // Iterate through the parcels and add relevant data to the table model
-                for (Parcel parcel : deliverySystem.getParcels()) {
-                    // Check if the parcel is delivered within the last 90 days
-                    if (parcel.isDelivered() && withinLast90Days(parcel.getDeliveryDate(), currentDate)) {
-                        // Format the delivery date
-                        String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(parcel.getDeliveryDate());
-
-                        // Add data to the table model
-                        Object[] rowData = {
-                                parcel.getTrackingID(),
-                                parcel.getSenderName(),
-                                parcel.getReceiverName(),
-                                parcel.getWeight(),
-                                parcel.isPerishable(),
-                                parcel.isDelivered(),
-                                formattedDate
-                        };
-                        tableModel.addRow(rowData);
-                    }
-                }
-
-                // Create a JTable with the populated table model
-                JTable historyTable = new JTable(tableModel);
-
-                // Display the JTable in a JScrollPane to handle scrolling
-                JScrollPane scrollPane = new JScrollPane(historyTable);
-                JOptionPane.showMessageDialog(null, scrollPane, "Delivery History", JOptionPane.INFORMATION_MESSAGE);
-                
-    }//GEN-LAST:event_historyButtonActionPerformed
- private boolean withinLast90Days(Date deliveryDate, Date currentDate) {
-                // Calculate the difference in milliseconds
-                long differenceInMilliseconds = currentDate.getTime() - deliveryDate.getTime();
-                // Convert milliseconds to days
-                long differenceInDays = differenceInMilliseconds / (24 * 60 * 60 * 1000);
-
-                // Check if the delivery date is within the last 90 days
-                return differenceInDays <= 90;
-            }
     private void trackingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackingButtonActionPerformed
-        // TODO add your handling code here:
-         // Prompt the user to enter the tracking ID
-        String trackingID = JOptionPane.showInputDialog("Enter Tracking ID:");
-
-        // Search for the parcel with the given tracking ID
-        Parcel trackedParcel = findParcelByTrackingID(trackingID);
-
-        // Display tracking information
-        if (trackedParcel != null) {
-            String status = trackedParcel.isDelivered() ? "Delivered" : "In Transit";
-            String deliveryDate = trackedParcel.isDelivered()
-                    ? "Delivered on " + trackedParcel.getDeliveryDate()
-                    : "Not yet delivered";
-
-            String trackingInfo = String.format("Status: %s\n%s", status, deliveryDate);
-            JOptionPane.showMessageDialog(null, trackingInfo, "Parcel Tracking",
-                    JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Parcel not found", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+         //open input tracking
+        setVisible(false);
+        InputTrackingGUI ob = new InputTrackingGUI();
+        ob.setVisible(true);
     }//GEN-LAST:event_trackingButtonActionPerformed
-private Parcel findParcelByTrackingID(String trackingID) {
-        List<Parcel> parcels = deliverySystem.getParcels();
-        for (Parcel parcel : parcels) {
-            // Assuming Parcel class has a getTrackingID() method
-            if (parcel.getTrackingID().equals(trackingID)) {
-                return parcel;
-            }
-        }
-        return null;
-    }
-    private void historyButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_historyButton1ActionPerformed
+
+    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
+         //open input tracking
+        setVisible(false);
+        HistoryGUI ob = new HistoryGUI();
+        ob.setVisible(true); 
+    }//GEN-LAST:event_historyButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,9 +168,9 @@ private Parcel findParcelByTrackingID(String trackingID) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton historyButton;
-    private javax.swing.JButton historyButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton trackingButton;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

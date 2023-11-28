@@ -13,16 +13,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.*;
+
 /**
  *
  * @author User
  */
-public class InputTrackingGUI extends javax.swing.JFrame {
+public class InputTrackingIdGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form InputTrackingGUI
      */
-    public InputTrackingGUI() {
+    public InputTrackingIdGUI() {
         initComponents();
     }
 
@@ -37,11 +40,7 @@ public class InputTrackingGUI extends javax.swing.JFrame {
 
         jLabel16 = new javax.swing.JLabel();
         searchButton = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        trackingIDField = new javax.swing.JTextField();
         trackingIDField1 = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
         searchButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,28 +55,12 @@ public class InputTrackingGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel17.setText("Date :");
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel18.setText("Or");
-
-        trackingIDField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        trackingIDField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                trackingIDFieldActionPerformed(evt);
-            }
-        });
-
         trackingIDField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         trackingIDField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackingIDField1ActionPerformed(evt);
             }
         });
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel19.setText("YYYY/dd/mm");
 
         searchButton1.setText("Back");
         searchButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -90,43 +73,27 @@ public class InputTrackingGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel18))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(trackingIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(trackingIDField1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(101, 101, 101))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(searchButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(searchButton)
-                .addGap(39, 39, 39))
+                .addGap(36, 36, 36))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel16)
+                .addGap(26, 26, 26)
+                .addComponent(trackingIDField1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap(88, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(trackingIDField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(trackingIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel19)))
-                .addGap(46, 46, 46)
+                .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -137,25 +104,60 @@ public class InputTrackingGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        // ดึงข้อมูลจากไฟล์ record.txt และทำการค้นหา
-        List<String> result = searchData();
-        
-        // แสดงผลลัพธ์
-        if (!result.isEmpty()) {
-            StringBuilder message = new StringBuilder("Search results:\n");
-            for (String record : result) {
-                message.append(record).append("\n");
-            }
-            JOptionPane.showMessageDialog(this, message.toString(), "Search Results", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "No records found", "Search Results", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_searchButtonActionPerformed
-private List<String> searchData() {
-    List<String> result = new ArrayList<>();
-    String searchTrackingID = trackingIDField1.getText();
-    String searchDate = trackingIDField.getText();
+    // ดึงข้อมูลจากไฟล์ record.txt และทำการค้นหา
+    List<JPanel> resultPanels = searchData();
 
+    // แสดงผลลัพธ์
+    if (!resultPanels.isEmpty()) {
+        for (JPanel resultPanel : resultPanels) {
+            JOptionPane.showOptionDialog(
+                    this,
+                    resultPanel,
+                    "Search Results",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE,
+                    null,
+                    new Object[]{},
+                    null
+            );
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "No records found", "Search Results", JOptionPane.INFORMATION_MESSAGE);
+    }
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+private JPanel createResultPanel(String[] parts) {
+    JPanel panel = new JPanel();
+    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+    // Display information
+    panel.add(new JLabel("----------"));
+    panel.add(new JLabel("Tracking ID : " + parts[0]));
+    panel.add(new JLabel("Sender Name : " + parts[1]));
+    panel.add(new JLabel("Sender Address : " + parts[2]));
+    panel.add(new JLabel("Receiver Name : " + parts[4]));
+    panel.add(new JLabel("Receiver Address : " + parts[5]));
+    panel.add(new JLabel("Status : " + parts[10]));
+    panel.add(new JLabel("Timestamp : " + parts[11]));
+
+    // Add a button for updating status
+    JButton updateStatusButton = new JButton("Update Status");
+    updateStatusButton.addActionListener(e -> {
+        String newStatus = JOptionPane.showInputDialog(this, "Enter new status:");
+        if (newStatus != null && !newStatus.trim().isEmpty()) {
+            // TODO: Update the status in your data structure or file
+            // For now, just display the new status
+            JOptionPane.showMessageDialog(this, "Status updated to: " + newStatus);
+        }
+    });
+    panel.add(updateStatusButton);
+
+    return panel;
+}
+
+private List<JPanel> searchData() {
+    List<JPanel> resultPanels = new ArrayList<>();
+    String searchTrackingID = trackingIDField1.getText();
     String filePath = "D:\\CSC250\\Delivery project\\src\\main\\java\\db\\record.txt";
 
     try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -164,36 +166,22 @@ private List<String> searchData() {
             String[] parts = line.split(",");
             String trackingID = parts[0];
 
-            // ... โค้ดที่มีอยู่
-
             // Check if Tracking ID matches (if provided)
-            boolean trackingIDMatch =  trackingID.equals(searchTrackingID);
-            boolean trackingDateMatch = searchDate.equals(parts[11]);
-            if (trackingIDMatch||trackingDateMatch) {
-                result.add("----------");
-                result.add("Tracking ID : "+ trackingID);
-                result.add("Sender Name : "+ parts[1]);
-                result.add("Sender Address : "+ parts[2]);
-                result.add("Receiver Name : "+ parts[4]);
-                result.add("Receiver Address : "+ parts[5]);
-                result.add("Status : "+ parts[10]);
-                result.add("Timestamp : "+ parts[11]);
+            boolean trackingIDMatch = trackingID.equals(searchTrackingID);
+            if (trackingIDMatch) {
+                resultPanels.add(createResultPanel(parts));
             }
         }
     } catch (IOException ioException) {
-    ioException.printStackTrace();
-    JOptionPane.showMessageDialog(this, "Error reading/writing to the file", "Error", JOptionPane.ERROR_MESSAGE);
-} 
+        ioException.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error reading/writing to the file", "Error", JOptionPane.ERROR_MESSAGE);
+    }
 
-    return result;
+    return resultPanels;
 }
 
 
     
-    private void trackingIDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackingIDFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_trackingIDFieldActionPerformed
-
     private void trackingIDField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackingIDField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_trackingIDField1ActionPerformed
@@ -222,32 +210,29 @@ private List<String> searchData() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InputTrackingGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InputTrackingIdGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InputTrackingGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InputTrackingIdGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InputTrackingGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InputTrackingIdGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InputTrackingGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InputTrackingIdGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InputTrackingGUI().setVisible(true);
+                new InputTrackingIdGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton searchButton1;
-    private javax.swing.JTextField trackingIDField;
     private javax.swing.JTextField trackingIDField1;
     // End of variables declaration//GEN-END:variables
 }

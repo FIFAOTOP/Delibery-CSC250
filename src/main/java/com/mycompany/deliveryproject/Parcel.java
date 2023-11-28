@@ -14,7 +14,7 @@ public class Parcel {
         this.shippingMethod = shippingMethod;
         this.deliveryService = deliveryService;
     }
-    public void calculateDeliveryCost() {
+    public String calculateDeliveryCost() {
         double baseCost = 40.0;
         double additionalCostPerKilo = 15.0;
 
@@ -25,7 +25,7 @@ public class Parcel {
         }
         shippingCost= baseCost + (weight - 1) * additionalCostPerKilo;
         //String a = String.valueOf(Double.parseDouble(shippingCost));
-        //return shippingCost+"";
+        return shippingCost+"";
     }
     public void shippingMethod(){
         
